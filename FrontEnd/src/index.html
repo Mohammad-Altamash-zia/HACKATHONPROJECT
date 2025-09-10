@@ -30,12 +30,79 @@
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
         }
+        .auth-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+         /* Simple toggle switch styling */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #4f46e5;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #4f46e5;
+        }
+        /* Responsive Timetable */
+        @media (max-width: 767px) {
+            .timetable-section thead {
+                display: none;
+            }
+            .timetable-section table, .timetable-section tbody, .timetable-section tr, .timetable-section td {
+                display: block;
+                width: 100%;
+            }
+            .timetable-section tr {
+                margin-bottom: 1.5rem;
+                border: 1px solid #374151; /* gray-700 */
+                border-radius: 0.5rem;
+                overflow: hidden;
+            }
+            .timetable-section td {
+                padding-left: 50%;
+                text-align: right;
+                position: relative;
+                white-space: normal;
+                border-bottom: 1px solid #1f2937; /* gray-800 */
+            }
+            .timetable-section td:last-child {
+                border-bottom: 0;
+            }
+            .timetable-section td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 1rem;
+                width: 45%;
+                padding-right: 0.5rem;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: 600;
+                text-transform: uppercase;
+                color: #9ca3af; /* gray-400 */
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
 
+<!-- Language Selection Modal -->
+<div id="language-container" class="fixed inset-0 z-[100] bg-gray-900 bg-opacity-80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-gray-800/80 w-full max-w-md p-8 rounded-2xl ring-1 ring-white/10 shadow-2xl relative text-center">
+        <h2 class="text-2xl font-bold text-white mb-8">Select Your Language / अपनी भाषा चुनें</h2>
+        <div class="space-y-4">
+            <button class="lang-btn w-full p-4 bg-indigo-600/50 hover:bg-indigo-600/80 rounded-lg transition-all duration-300 transform hover:scale-105">
+                <span class="font-bold text-lg">English</span>
+            </button>
+            <button class="lang-btn w-full p-4 bg-gray-700/50 hover:bg-gray-700/80 rounded-lg transition-all duration-300 transform hover:scale-105">
+                <span class="font-bold text-lg">हिन्दी (Hindi)</span>
+            </button>
+            <button class="lang-btn w-full p-4 bg-gray-700/50 hover:bg-gray-700/80 rounded-lg transition-all duration-300 transform hover:scale-105">
+                <span class="font-bold text-lg">ਪੰਜਾਬੀ (Punjabi)</span>
+            </button>
+        </div>
+    </div>
+</div>
+
 <!-- Main Page Content -->
-<div id="main-content">
+<div id="main-content" class="hidden">
   <header class="absolute inset-x-0 top-0 z-50">
     <nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
       <div class="flex lg:flex-1">
@@ -56,13 +123,13 @@
         </button>
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
-        <a href="#home" class="text-sm font-semibold leading-6 text-white transition-colors duration-300 hover:text-indigo-400">Home</a>
-        <a href="#timetable" class="text-sm font-semibold leading-6 text-white transition-colors duration-300 hover:text-indigo-400">Timetable</a>
-        <a href="#bus-info" class="text-sm font-semibold leading-6 text-white transition-colors duration-300 hover:text-indigo-400">Bus Info</a>
-        <a href="#contact" class="text-sm font-semibold leading-6 text-white transition-colors duration-300 hover:text-indigo-400">Contact Us</a>
+        <button type="button" class="home-link text-sm font-semibold leading-6 text-white transition-colors duration-300 hover:text-indigo-400">Home</button>
+        <button type="button" class="view-timetable-btn text-sm font-semibold leading-6 text-white transition-colors duration-300 hover:text-indigo-400">Timetable</button>
+        <button type="button" class="view-bus-info-btn text-sm font-semibold leading-6 text-white transition-colors duration-300 hover:text-indigo-400">Bus Info</button>
+        <button type="button" class="view-contact-btn text-sm font-semibold leading-6 text-white transition-colors duration-300 hover:text-indigo-400">Contact Us</button>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <button type="button" class="text-sm font-semibold leading-6 text-white transition-colors duration-300 hover:text-indigo-400 login-btn">Log in <span aria-hidden="true">&rarr;</span></button>
+        <button type="button" class="auth-trigger text-sm font-semibold leading-6 text-white transition-colors duration-300 hover:text-indigo-400">Log in <span aria-hidden="true">&rarr;</span></button>
       </div>
     </nav>
     <dialog id="mobile-menu" class="m-0 p-0 bg-transparent lg:hidden">
@@ -85,13 +152,13 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-white/10">
             <div class="space-y-2 py-6">
-              <a href="#home" class="nav-link -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Home</a>
-              <a href="#timetable" class="nav-link -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Timetable</a>
-              <a href="#bus-info" class="nav-link -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Bus Info</a>
-              <a href="#contact" class="nav-link -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Contact Us</a>
+              <button type="button" class="home-link -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Home</button>
+              <button type="button" class="view-timetable-btn -mx-3 block w-full text-left rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Timetable</button>
+              <button type="button" class="view-bus-info-btn -mx-3 block w-full text-left rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Bus Info</button>
+              <button type="button" class="view-contact-btn -mx-3 block w-full text-left rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Contact Us</button>
             </div>
             <div class="py-6">
-              <button type="button" class="login-btn -mx-3 block w-full text-left rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-white/5">Log in</button>
+              <button type="button" class="auth-trigger -mx-3 block w-full text-left rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-white/5">Log in</button>
             </div>
           </div>
         </div>
@@ -99,9 +166,9 @@
     </dialog>
   </header>
 
-  <main>
+  <main id="home-page">
     <!-- Hero Section -->
-    <section id="home" class="relative isolate px-6 pt-14 lg:px-8">
+    <section id="home" class="relative isolate px-6 pt-14 lg:px-8 overflow-hidden">
       <div aria-hidden="true" class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
         <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1.2/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
       </div>
@@ -115,15 +182,15 @@
           <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Track Your Bus in<br>Real-Time</h1>
           <p class="mt-6 text-lg leading-8 text-gray-300">YatriMate brings live bus tracking and scheduling right to your fingertips.</p>
           <div class="mt-10 flex items-center justify-center gap-x-6">
-            <button type="button" class="signup-btn rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-transform duration-300 hover:bg-indigo-400 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Get started</button>
-            <a href="#bus-info" class="text-sm font-semibold leading-6 text-white transition-transform duration-300 hover:scale-105">Learn more <span aria-hidden="true">→</span></a>
+            <button type="button" class="auth-trigger rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-transform duration-300 hover:bg-indigo-400 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Get started</button>
+            <button type="button" class="auth-trigger text-sm font-semibold leading-6 text-white transition-transform duration-300 hover:scale-105">Login <span aria-hidden="true">→</span></button>
           </div>
           <div class="mt-10 max-w-xl mx-auto">
-              <form action="#" method="POST" class="flex flex-col sm:flex-row items-center w-full p-2 rounded-full bg-gray-800/60 ring-1 ring-white/20 backdrop-blur-sm transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(129,140,248,0.4)] focus-within:shadow-[0_0_25px_rgba(99,102,241,0.5)]">
+              <form action="#" method="POST" class="flex flex-col sm:flex-row items-center w-full p-2 rounded-3xl sm:rounded-full bg-gray-800/60 ring-1 ring-white/20 backdrop-blur-sm transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(129,140,248,0.4)] focus-within:shadow-[0_0_25px_rgba(99,102,241,0.5)]">
                   <input type="text" name="start" required class="w-full sm:flex-1 bg-transparent border-0 py-2.5 px-4 text-white placeholder:text-gray-400 focus:ring-0 focus:outline-none" placeholder="Starting Point">
                   <div class="w-full sm:w-px h-px sm:h-6 bg-white/20 my-2 sm:my-0 sm:mx-2"></div>
                   <input type="text" name="end" required class="w-full sm:flex-1 bg-transparent border-0 py-2.5 px-4 text-white placeholder:text-gray-400 focus:ring-0 focus:outline-none" placeholder="Destination">
-                  <button type="submit" class="w-full sm:w-auto mt-2 sm:mt-0 sm:ml-2 rounded-full bg-indigo-500 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-transform duration-300 hover:bg-indigo-400 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                  <button type="submit" class="w-full sm:w-auto mt-2 sm:mt-0 sm:ml-2 rounded-2xl sm:rounded-full bg-indigo-500 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-transform duration-300 hover:bg-indigo-400 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                       Search
                   </button>
               </form>
@@ -135,8 +202,16 @@
       </div>
     </section>
 
-    <!-- Timetable Section -->
-    <section id="timetable" class="bg-gray-900 py-16 sm:py-24">
+    <!-- Divider -->
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="border-t border-white/10"></div>
+    </div>
+
+    <!-- Timetable Preview Section -->
+    <section id="timetable-preview" class="timetable-section bg-gray-900 py-16 sm:py-24 relative isolate overflow-hidden">
+      <div aria-hidden="true" class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+        <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%+20rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[15deg] bg-gradient-to-tr from-[#80ffb5] to-[#899cfc] opacity-20 sm:w-[72.1875rem]"></div>
+      </div>
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
           <div class="sm:flex-auto">
@@ -145,60 +220,68 @@
           </div>
         </div>
         <div class="mt-8 flow-root">
-          <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 no-scrollbar">
-            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-              <div class="overflow-hidden shadow ring-1 ring-white/10 sm:rounded-lg">
-                <table class="min-w-full divide-y divide-gray-700">
-                  <thead class="bg-gray-800">
-                    <tr>
-                      <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-6">Route</th>
-                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Bus Number</th>
-                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Departure</th>
-                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Arrival (Est.)</th>
-                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-gray-800 bg-gray-900">
-                    <!-- Table rows with hover effect -->
-                    <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                      <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Downtown Express</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300">#602A</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300">Central Station (5:15 PM)</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300">North Plaza (5:55 PM)</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
-                    </tr>
-                    <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                      <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">City Circle</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300">#417B</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300">West Market (5:20 PM)</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300">East Gate (6:10 PM)</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-400 ring-1 ring-inset ring-yellow-500/20">Slight Delay</span></td>
-                    </tr>
-                    <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                      <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">University Line</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300">#921U</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300">Tech Campus (5:30 PM)</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300">Library Hub (5:45 PM)</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
-                    </tr>
-                    <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                      <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Airport Shuttle</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300">#A33-1</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300">Grand Hotel (5:35 PM)</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300">Terminal 2 (6:25 PM)</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-red-500/10 px-2 py-1 text-xs font-medium text-red-400 ring-1 ring-inset ring-red-500/20">Cancelled</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+          <div class="overflow-hidden shadow ring-1 ring-white/10 sm:rounded-lg">
+            <table class="min-w-full">
+              <thead class="bg-gray-800">
+                <tr>
+                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-6">Route</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Bus Number</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Departure</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Arrival (Est.)</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Status</th>
+                </tr>
+              </thead>
+              <tbody class="bg-gray-900">
+                <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                  <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Downtown Express</td>
+                  <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#602A</td>
+                  <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Central Station (5:15 PM)</td>
+                  <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">North Plaza (5:55 PM)</td>
+                  <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                </tr>
+                <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                  <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">City Circle</td>
+                  <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#417B</td>
+                  <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">West Market (5:20 PM)</td>
+                  <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">East Gate (6:10 PM)</td>
+                  <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-400 ring-1 ring-inset ring-yellow-500/20">Slight Delay</span></td>
+                </tr>
+                <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                  <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">University Line</td>
+                  <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#921U</td>
+                  <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Tech Campus (5:30 PM)</td>
+                  <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Library Hub (5:45 PM)</td>
+                  <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                </tr>
+                 <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                  <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Airport Shuttle</td>
+                  <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#A33-1</td>
+                  <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Grand Hotel (5:35 PM)</td>
+                  <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Terminal 2 (6:25 PM)</td>
+                  <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-red-500/10 px-2 py-1 text-xs font-medium text-red-400 ring-1 ring-inset ring-red-500/20">Cancelled</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-8 text-center">
+            <button class="view-timetable-btn rounded-md bg-indigo-500 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-transform duration-300 hover:bg-indigo-400 hover:scale-105">
+                View More Live Buses
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Bus Info Section -->
-    <section id="bus-info" class="bg-gray-900 py-16 sm:py-24">
+    <!-- Divider -->
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="border-t border-white/10"></div>
+    </div>
+
+    <!-- Bus Info Preview Section -->
+    <section id="bus-info-preview" class="bg-gray-900 py-16 sm:py-24 relative isolate overflow-hidden">
+        <div aria-hidden="true" class="absolute inset-x-0 -bottom-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-bottom-80">
+            <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-20rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[-45deg] bg-gradient-to-tr from-[#9089fc] to-[#ff80b5] opacity-20 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"></div>
+        </div>
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0">
           <h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Bus Information</h2>
@@ -206,7 +289,7 @@
         </div>
         <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-8 border-t border-white/10 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           <!-- Bus cards with hover effect -->
-          <article class="transform transition-all duration-300 hover:scale-105 hover:ring-2 hover:ring-indigo-500 flex max-w-xl flex-col items-start justify-between rounded-lg bg-gray-800/40 p-6 ring-1 ring-white/10">
+          <article class="transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/20 flex max-w-xl flex-col items-start justify-between rounded-lg bg-gray-800/40 p-6 ring-1 ring-white/10">
             <div class="group relative">
               <h3 class="mt-3 text-lg font-semibold leading-6 text-white"><a href="#"><span class="absolute inset-0"></span>City Express</a></h3>
               <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-400">Our standard City Express buses are the backbone of urban transit, designed for comfort and efficiency on high-frequency routes.</p>
@@ -220,7 +303,7 @@
               </div>
             </div>
           </article>
-          <article class="transform transition-all duration-300 hover:scale-105 hover:ring-2 hover:ring-indigo-500 flex max-w-xl flex-col items-start justify-between rounded-lg bg-gray-800/40 p-6 ring-1 ring-white/10">
+          <article class="transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/20 flex max-w-xl flex-col items-start justify-between rounded-lg bg-gray-800/40 p-6 ring-1 ring-white/10">
             <div class="group relative">
               <h3 class="mt-3 text-lg font-semibold leading-6 text-white"><a href="#"><span class="absolute inset-0"></span>Metro Shuttle</a></h3>
               <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-400">Connecting suburban areas to the city center, these shuttles are smaller, faster, and perfect for commuter routes.</p>
@@ -234,7 +317,7 @@
               </div>
             </div>
           </article>
-          <article class="transform transition-all duration-300 hover:scale-105 hover:ring-2 hover:ring-indigo-500 flex max-w-xl flex-col items-start justify-between rounded-lg bg-gray-800/40 p-6 ring-1 ring-white/10">
+          <article class="transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/20 flex max-w-xl flex-col items-start justify-between rounded-lg bg-gray-800/40 p-6 ring-1 ring-white/10">
             <div class="group relative">
               <h3 class="mt-3 text-lg font-semibold leading-6 text-white"><a href="#"><span class="absolute inset-0"></span>Eco-Friendly Electric</a></h3>
               <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-400">Our new fleet of electric buses offers a silent, zero-emission ride, contributing to a greener and cleaner city.</p>
@@ -249,11 +332,24 @@
             </div>
           </article>
         </div>
+         <div class="mt-8 text-center">
+            <button class="view-bus-info-btn rounded-md bg-indigo-500 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-transform duration-300 hover:bg-indigo-400 hover:scale-105">
+                View All Bus Info
+            </button>
+          </div>
       </div>
     </section>
 
+    <!-- Divider -->
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="border-t border-white/10"></div>
+    </div>
+
     <!-- Stats Section -->
-    <section class="pb-24 sm:pb-32">
+    <section class="py-16 sm:py-24 relative isolate overflow-hidden">
+       <div aria-hidden="true" class="absolute inset-x-0 -top-20 -z-10 transform-gpu overflow-hidden blur-3xl">
+            <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%+10rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[120deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-10 sm:w-[72.1875rem]"></div>
+        </div>
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-px bg-white/5 sm:grid-cols-2 lg:grid-cols-4 rounded-lg overflow-hidden">
           <div class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
@@ -276,15 +372,23 @@
       </div>
     </section>
 
+    <!-- Divider -->
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="border-t border-white/10"></div>
+    </div>
+
     <!-- CTA and Footer Section -->
-    <section id="contact">
+    <section id="cta" class="relative isolate overflow-hidden">
+      <div aria-hidden="true" class="absolute inset-x-0 bottom-0 -z-10 transform-gpu overflow-hidden blur-3xl">
+            <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-15rem)] aspect-[1155/678] w-[36.125rem] translate-y-1/2 rotate-[-90deg] bg-gradient-to-tr from-[#80ffb5] to-[#ff80b5] opacity-20 sm:w-[72.1875rem]"></div>
+      </div>
       <div class="bg-gray-900">
         <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
           <div class="mx-auto max-w-2xl text-center">
             <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Boost your commute.<br>Start using YatriMate today.</h2>
             <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">Experience seamless travel with live tracking and real-time updates. Never miss your bus again.</p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
-              <button type="button" class="signup-btn rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-transform duration-300 hover:bg-indigo-400 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Get started</button>
+              <button type="button" class="auth-trigger rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-transform duration-300 hover:bg-indigo-400 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Get started</button>
             </div>
           </div>
         </div>
@@ -296,6 +400,7 @@
           <div class="xl:grid xl:grid-cols-2 xl:gap-8">
             <div class="space-y-8">
                 <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                <span class="ml-2 text-xl font-bold text-white">YatriMate</span>   
             </div>
             <div class="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4 xl:mt-0">
               <div>
@@ -309,24 +414,24 @@
               <div>
                 <h3 class="text-sm font-semibold leading-6 text-white">Support</h3>
                 <ul role="list" class="mt-6 space-y-4">
-                  <li><a href="#" class="text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white">Help Center</a></li>
-                  <li><a href="#" class="text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white">FAQs</a></li>
-                  <li><a href="#" class="text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white">API Status</a></li>
+                  <li><button type="button" class="footer-link text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white" data-page="help-center-page">Help Center</button></li>
+                  <li><button type="button" class="footer-link text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white" data-page="faq-page">FAQs</button></li>
+                  <li><button type="button" class="footer-link text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white" data-page="api-status-page">API Status</button></li>
                 </ul>
               </div>
               <div class="mt-10 md:mt-0">
                 <h3 class="text-sm font-semibold leading-6 text-white">Company</h3>
                 <ul role="list" class="mt-6 space-y-4">
-                  <li><a href="#" class="text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white">About</a></li>
-                  <li><a href="#" class="text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white">Blog</a></li>
-                  <li><a href="#" class="text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white">Press</a></li>
+                  <li><button type="button" class="footer-link text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white" data-page="about-page">About</button></li>
+                  <li><button type="button" class="footer-link text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white" data-page="blog-page">Blog</button></li>
+                  <li><button type="button" class="footer-link text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white" data-page="press-page">Press</button></li>
                 </ul>
               </div>
               <div class="mt-10 md:mt-0">
                 <h3 class="text-sm font-semibold leading-6 text-white">Legal</h3>
                 <ul role="list" class="mt-6 space-y-4">
-                  <li><a href="#" class="text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white">Terms of Service</a></li>
-                  <li><a href="#" class="text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white">Privacy Policy</a></li>
+                  <li><button type="button" class="footer-link text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white" data-page="terms-page">Terms of Service</button></li>
+                  <li><button type="button" class="footer-link text-sm leading-6 text-gray-300 transition-colors duration-300 hover:text-white" data-page="privacy-page">Privacy Policy</button></li>
                 </ul>
               </div>
             </div>
@@ -345,137 +450,969 @@
   </main>
 </div>
 
-<!-- Login Page -->
-<div id="login-page" class="hidden fixed inset-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-gray-800/80 w-full max-w-md p-8 rounded-2xl ring-1 ring-white/10 shadow-2xl relative">
+<!-- Full Timetable Page -->
+<div id="timetable-page" class="hidden">
+    <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <span class="ml-3 text-xl font-bold">Live Timetable</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="home-link rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 transition-transform duration-300 hover:scale-105">Back to Home</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="timetable-section py-16 sm:py-24 relative isolate overflow-hidden">
+        <div aria-hidden="true" class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+            <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%+20rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[15deg] bg-gradient-to-tr from-[#80ffb5] to-[#899cfc] opacity-20 sm:w-[72.1875rem]"></div>
+        </div>
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="sm:flex sm:items-center">
+                <div class="sm:flex-auto">
+                    <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Full Bus Schedule</h1>
+                    <p class="mt-2 text-sm text-gray-400">All available real-time bus schedules and statuses.</p>
+                </div>
+            </div>
+            <div class="mt-8 flow-root">
+                <div class="overflow-hidden shadow ring-1 ring-white/10 sm:rounded-lg">
+                    <table class="min-w-full">
+                        <thead class="bg-gray-800">
+                            <tr>
+                                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-6">Route</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Bus Number</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Departure</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Arrival (Est.)</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-gray-900">
+                            <!-- More Bus Data -->
+                             <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Downtown Express</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#602A</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Central Station (5:15 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">North Plaza (5:55 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">City Circle</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#417B</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">West Market (5:20 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">East Gate (6:10 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-400 ring-1 ring-inset ring-yellow-500/20">Slight Delay</span></td>
+                            </tr>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">University Line</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#921U</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Tech Campus (5:30 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Library Hub (5:45 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Airport Shuttle</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#A33-1</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Grand Hotel (5:35 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Terminal 2 (6:25 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-red-500/10 px-2 py-1 text-xs font-medium text-red-400 ring-1 ring-inset ring-red-500/20">Cancelled</span></td>
+                            </tr>
+                             <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Suburb Connect</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#S-12</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Oakwood Mall (5:40 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">City Center (6:30 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                             <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Industrial Park</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#IP-4</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Factory Gate (5:55 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Metro Station (6:20 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Full Bus Info Page -->
+<div id="bus-info-page" class="hidden">
+    <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <span class="ml-3 text-xl font-bold">Bus Information</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="home-link rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 transition-transform duration-300 hover:scale-105">Back to Home</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="py-16 sm:py-24 relative isolate overflow-hidden">
+        <div aria-hidden="true" class="absolute inset-x-0 -bottom-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-bottom-80">
+            <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-20rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[-45deg] bg-gradient-to-tr from-[#9089fc] to-[#ff80b5] opacity-20 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"></div>
+        </div>
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl lg:mx-0">
+                <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Our Fleet</h1>
+                <p class="mt-2 text-lg leading-8 text-gray-400">Detailed information about the types of buses we operate.</p>
+            </div>
+            <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-8 border-t border-white/10 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                 <article class="transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/20 flex max-w-xl flex-col items-start justify-between rounded-lg bg-gray-800/40 p-6 ring-1 ring-white/10">
+                    <div class="group relative">
+                      <h3 class="mt-3 text-lg font-semibold leading-6 text-white"><a href="#"><span class="absolute inset-0"></span>City Express</a></h3>
+                      <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-400">Our standard City Express buses are the backbone of urban transit, designed for comfort and efficiency on high-frequency routes.</p>
+                    </div>
+                    <div class="relative mt-8 flex items-center gap-x-4">
+                       <div class="text-sm leading-6">
+                          <p class="font-semibold text-white">Features</p>
+                          <ul class="list-disc list-inside text-gray-400 mt-2">
+                              <li>Air Conditioning</li><li>Priority Seating</li><li>Wheelchair Accessible</li>
+                          </ul>
+                      </div>
+                    </div>
+                </article>
+                <article class="transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/20 flex max-w-xl flex-col items-start justify-between rounded-lg bg-gray-800/40 p-6 ring-1 ring-white/10">
+                    <div class="group relative">
+                      <h3 class="mt-3 text-lg font-semibold leading-6 text-white"><a href="#"><span class="absolute inset-0"></span>Metro Shuttle</a></h3>
+                      <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-400">Connecting suburban areas to the city center, these shuttles are smaller, faster, and perfect for commuter routes.</p>
+                    </div>
+                    <div class="relative mt-8 flex items-center gap-x-4">
+                       <div class="text-sm leading-6">
+                          <p class="font-semibold text-white">Features</p>
+                          <ul class="list-disc list-inside text-gray-400 mt-2">
+                              <li>Free Wi-Fi</li><li>USB Charging Ports</li><li>Luggage Racks</li>
+                          </ul>
+                      </div>
+                    </div>
+                </article>
+                <article class="transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/20 flex max-w-xl flex-col items-start justify-between rounded-lg bg-gray-800/40 p-6 ring-1 ring-white/10">
+                    <div class="group relative">
+                      <h3 class="mt-3 text-lg font-semibold leading-6 text-white"><a href="#"><span class="absolute inset-0"></span>Eco-Friendly Electric</a></h3>
+                      <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-400">Our new fleet of electric buses offers a silent, zero-emission ride, contributing to a greener and cleaner city.</p>
+                    </div>
+                    <div class="relative mt-8 flex items-center gap-x-4">
+                       <div class="text-sm leading-6">
+                          <p class="font-semibold text-white">Features</p>
+                          <ul class="list-disc list-inside text-gray-400 mt-2">
+                              <li>Zero Emissions</li><li>Quiet Operation</li><li>Modern Digital Displays</li>
+                          </ul>
+                      </div>
+                    </div>
+                </article>
+                 <!-- Add more bus info cards as needed -->
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Full Contact Us Page -->
+<div id="contact-page" class="hidden">
+    <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <span class="ml-3 text-xl font-bold">Contact Us</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="home-link rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 transition-transform duration-300 hover:scale-105">Back to Home</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="py-16 sm:py-24 relative isolate overflow-hidden">
+        <div aria-hidden="true" class="absolute inset-x-0 -bottom-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-bottom-80">
+            <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-20rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[-45deg] bg-gradient-to-tr from-[#9089fc] to-[#ff80b5] opacity-20 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"></div>
+        </div>
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Get in Touch</h1>
+                <p class="mt-2 text-lg leading-8 text-gray-400">We’d love to hear from you! Please fill out the form below or contact us using the details provided.</p>
+            </div>
+            <div class="mx-auto mt-16 max-w-xl sm:mt-20">
+                <form action="#" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-semibold leading-6 text-white">Full name</label>
+                        <div class="mt-2.5">
+                            <input type="text" name="name" id="name" autocomplete="name" class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-semibold leading-6 text-white">Email</label>
+                        <div class="mt-2.5">
+                            <input type="email" name="email" id="email" autocomplete="email" class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-semibold leading-6 text-white">Message</label>
+                        <div class="mt-2.5">
+                            <textarea name="message" id="message" rows="4" class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <button type="submit" class="block w-full rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 transition-transform duration-300 hover:scale-105">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- All Footer Pages -->
+<div id="help-center-page" class="hidden">
+    <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <span class="ml-3 text-xl font-bold">Help Center</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="home-link rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 transition-transform duration-300 hover:scale-105">Back to Home</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="py-16 sm:py-24 relative isolate overflow-hidden">
+         <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Help Center</h1>
+            <p class="mt-4 text-lg leading-8 text-gray-400">Find answers to your questions and learn how to use YatriMate.</p>
+             <div class="mt-12 space-y-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">For Passengers</h2>
+                    <ul class="mt-4 list-disc list-inside space-y-2 text-gray-300">
+                        <li>How to track a bus in real-time.</li>
+                        <li>How to search for routes and stops.</li>
+                        <li>Managing your account and saved favorites.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">For Drivers</h2>
+                    <ul class="mt-4 list-disc list-inside space-y-2 text-gray-300">
+                        <li>How to start and stop your tracking session.</li>
+                        <li>Viewing your assigned route and schedule.</li>
+                        <li>Using the SOS and notification features.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div id="faq-page" class="hidden">
+    <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <span class="ml-3 text-xl font-bold">FAQs</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="home-link rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 transition-transform duration-300 hover:scale-105">Back to Home</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="py-16 sm:py-24 relative isolate overflow-hidden">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Frequently Asked Questions</h1>
+            <div class="mt-12 space-y-10">
+                <div>
+                    <h3 class="text-xl font-semibold text-white">Is the bus tracking really in real-time?</h3>
+                    <p class="mt-2 text-gray-400">Yes, our system uses GPS technology installed on each bus to provide you with up-to-the-minute location data.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-white">Can I use the app without an account?</h3>
+                    <p class="mt-2 text-gray-400">You can view general routes and schedules without an account. However, to save favorites and receive notifications, you will need to create a free passenger account.</p>
+                </div>
+                 <div>
+                    <h3 class="text-xl font-semibold text-white">What should I do if I see incorrect information?</h3>
+                    <p class="mt-2 text-gray-400">Please use the feedback option in the passenger dashboard or our contact page to report any discrepancies. We appreciate your help in keeping our data accurate.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div id="api-status-page" class="hidden">
+     <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <span class="ml-3 text-xl font-bold">API Status</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="home-link rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 transition-transform duration-300 hover:scale-105">Back to Home</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="py-16 sm:py-24 relative isolate overflow-hidden">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">API Status</h1>
+            <p class="mt-2 text-lg leading-8 text-gray-400">Live status of our services.</p>
+            <div class="mt-8 space-y-4">
+                <div class="flex justify-between items-center bg-gray-800/50 p-4 rounded-lg">
+                    <span class="font-semibold">Real-time GPS Tracking API</span>
+                    <span class="text-green-400 font-bold">Operational</span>
+                </div>
+                <div class="flex justify-between items-center bg-gray-800/50 p-4 rounded-lg">
+                    <span class="font-semibold">Passenger App Services</span>
+                    <span class="text-green-400 font-bold">Operational</span>
+                </div>
+                 <div class="flex justify-between items-center bg-gray-800/50 p-4 rounded-lg">
+                    <span class="font-semibold">Driver App Services</span>
+                    <span class="text-green-400 font-bold">Operational</span>
+                </div>
+                 <div class="flex justify-between items-center bg-gray-800/50 p-4 rounded-lg">
+                    <span class="font-semibold">Website & Authentication</span>
+                    <span class="text-green-400 font-bold">Operational</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div id="about-page" class="hidden">
+    <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <span class="ml-3 text-xl font-bold">About Us</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="home-link rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 transition-transform duration-300 hover:scale-105">Back to Home</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="py-16 sm:py-24 relative isolate overflow-hidden">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">About YatriMate</h1>
+            <p class="mt-4 text-lg leading-8 text-gray-400">YatriMate was founded with the mission to revolutionize public transportation through technology. We aim to make bus travel more predictable, efficient, and safe for everyone. Our platform connects passengers and drivers with real-time data to create a seamless and stress-free commuting experience.</p>
+        </div>
+    </main>
+</div>
+<div id="blog-page" class="hidden">
+    <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <span class="ml-3 text-xl font-bold">Blog</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="home-link rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 transition-transform duration-300 hover:scale-105">Back to Home</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="py-16 sm:py-24 relative isolate overflow-hidden">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Our Blog</h1>
+            <p class="mt-4 text-lg leading-8 text-gray-400">Coming soon! Stay tuned for updates, news, and stories from the world of public transit.</p>
+        </div>
+    </main>
+</div>
+<div id="press-page" class="hidden">
+     <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <span class="ml-3 text-xl font-bold">Press</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="home-link rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 transition-transform duration-300 hover:scale-105">Back to Home</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="py-16 sm:py-24 relative isolate overflow-hidden">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Press</h1>
+            <p class="mt-4 text-lg leading-8 text-gray-400">For all media inquiries, please contact us at <a href="mailto:press@yatrimate.com" class="text-indigo-400">press@yatrimate.com</a>.</p>
+        </div>
+    </main>
+</div>
+<div id="terms-page" class="hidden">
+    <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <span class="ml-3 text-xl font-bold">Terms of Service</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="home-link rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 transition-transform duration-300 hover:scale-105">Back to Home</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="py-16 sm:py-24 relative isolate overflow-hidden">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Terms of Service</h1>
+            <p class="mt-4 text-lg leading-8 text-gray-400">By using YatriMate, you agree to our terms of service. Please read them carefully. [Full text of terms and conditions would go here].</p>
+        </div>
+    </main>
+</div>
+<div id="privacy-page" class="hidden">
+     <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <span class="ml-3 text-xl font-bold">Privacy Policy</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="home-link rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 transition-transform duration-300 hover:scale-105">Back to Home</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="py-16 sm:py-24 relative isolate overflow-hidden">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Privacy Policy</h1>
+            <p class="mt-4 text-lg leading-8 text-gray-400">Your privacy is important to us. This policy explains what data we collect and how we use it. [Full text of privacy policy would go here].</p>
+        </div>
+    </main>
+</div>
+
+<!-- AUTH MODAL CONTAINER -->
+<div id="auth-container" class="hidden fixed inset-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm flex items-center justify-center p-4">
+    
+    <!-- Role Selection -->
+    <div id="role-selection-page" class="auth-modal bg-gray-800/80 w-full max-w-md p-8 rounded-2xl ring-1 ring-white/10 shadow-2xl relative">
         <button class="close-btn absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
-        <h2 class="text-2xl font-bold text-center text-white mb-6">Welcome Back</h2>
-        <form action="#" method="POST">
+        <h2 class="text-2xl font-bold text-center text-white mb-8">Join Us</h2>
+        <div class="space-y-4">
+            <button id="select-passenger" class="w-full text-left p-6 bg-indigo-600/50 hover:bg-indigo-600/80 rounded-lg transition-all duration-300 transform hover:scale-105">
+                <h3 class="font-bold text-lg">I'm a Passenger</h3>
+                <p class="text-sm text-indigo-200">Sign in or create an account to track buses and plan your trip.</p>
+            </button>
+            <button id="select-driver" class="w-full text-left p-6 bg-gray-700/50 hover:bg-gray-700/80 rounded-lg transition-all duration-300 transform hover:scale-105">
+                 <h3 class="font-bold text-lg">I'm a Driver</h3>
+                <p class="text-sm text-gray-300">Log in to your driver portal to view routes and schedules.</p>
+            </button>
+        </div>
+    </div>
+
+    <!-- Passenger Login -->
+    <div id="passenger-login-page" class="hidden auth-modal bg-gray-800/80 w-full max-w-md p-8 rounded-2xl ring-1 ring-white/10 shadow-2xl relative">
+        <button class="close-btn absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <h2 class="text-2xl font-bold text-center text-white mb-6">Passenger Login</h2>
+        <form action="#" method="POST" class="auth-form" data-dashboard="passenger">
             <div class="space-y-6">
                 <div>
-                    <label for="login-email" class="block text-sm font-medium text-gray-300">Email address</label>
-                    <input type="email" name="email" id="login-email" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <label for="pl-email" class="block text-sm font-medium text-gray-300">Email address</label>
+                    <input type="email" id="pl-email" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                 </div>
                 <div>
-                    <label for="login-password" class="block text-sm font-medium text-gray-300">Password</label>
-                    <input type="password" name="password" id="login-password" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                </div>
-                <div class="flex items-center justify-between">
-                    <a href="#" class="text-sm text-indigo-400 hover:text-indigo-300">Forgot your password?</a>
+                    <label for="pl-password" class="block text-sm font-medium text-gray-300">Password</label>
+                    <input type="password" id="pl-password" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                 </div>
                 <div>
                     <button type="submit" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign in</button>
                 </div>
             </div>
         </form>
-        <p class="mt-6 text-center text-sm text-gray-400">
-            Not a member?
-            <button class="font-medium text-indigo-400 hover:text-indigo-300 switch-to-signup">Sign up</button>
-        </p>
+        <p class="mt-6 text-center text-sm text-gray-400">Not a member? <button class="font-medium text-indigo-400 hover:text-indigo-300 switch-to-signup" data-role="passenger">Sign up</button></p>
     </div>
-</div>
-
-<!-- SignUp Page -->
-<div id="signup-page" class="hidden fixed inset-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm flex items-center justify-center p-4">
-     <div class="bg-gray-800/80 w-full max-w-md p-8 rounded-2xl ring-1 ring-white/10 shadow-2xl relative">
+    
+    <!-- Passenger Signup -->
+    <div id="passenger-signup-page" class="hidden auth-modal bg-gray-800/80 w-full max-w-md p-8 rounded-2xl ring-1 ring-white/10 shadow-2xl relative">
         <button class="close-btn absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
-        <h2 class="text-2xl font-bold text-center text-white mb-6">Create an Account</h2>
-        <form action="#" method="POST">
+        <h2 class="text-2xl font-bold text-center text-white mb-6">Create Passenger Account</h2>
+        <form action="#" method="POST" class="auth-form" data-dashboard="passenger">
             <div class="space-y-6">
                 <div>
-                    <label for="signup-name" class="block text-sm font-medium text-gray-300">Full Name</label>
-                    <input type="text" name="name" id="signup-name" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <label for="ps-name" class="block text-sm font-medium text-gray-300">Full Name</label>
+                    <input type="text" id="ps-name" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. John Doe">
                 </div>
                 <div>
-                    <label for="signup-email" class="block text-sm font-medium text-gray-300">Email address</label>
-                    <input type="email" name="email" id="signup-email" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <label for="ps-contact" class="block text-sm font-medium text-gray-300">Phone Number or Email</label>
+                    <input type="text" id="ps-contact" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. 9876543210 or mail@example.com">
                 </div>
                 <div>
-                    <label for="signup-password" class="block text-sm font-medium text-gray-300">Password</label>
-                    <input type="password" name="password" id="signup-password" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <label for="ps-password" class="block text-sm font-medium text-gray-300">Password</label>
+                    <input type="password" id="ps-password" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="••••••••">
+                </div>
+                 <div class="relative flex items-center">
+                    <div class="flex-grow border-t border-gray-600"></div>
+                    <span class="flex-shrink mx-4 text-gray-400 text-sm">OR</span>
+                    <div class="flex-grow border-t border-gray-600"></div>
+                </div>
+                 <div class="space-y-2">
+                    <button type="button" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-300 bg-indigo-600/30 hover:bg-indigo-600/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Sign Up with OTP
+                    </button>
                 </div>
                 <div>
-                    <button type="submit" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create Account</button>
+                    <button type="submit" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create Account with Password</button>
                 </div>
             </div>
         </form>
-         <p class="mt-6 text-center text-sm text-gray-400">
-            Already have an account?
-            <button class="font-medium text-indigo-400 hover:text-indigo-300 switch-to-login">Log in</button>
-        </p>
+         <p class="mt-6 text-center text-sm text-gray-400">Already a member? <button class="font-medium text-indigo-400 hover:text-indigo-300 switch-to-login" data-role="passenger">Log in</button></p>
+    </div>
+
+    <!-- Driver Login -->
+    <div id="driver-login-page" class="hidden auth-modal bg-gray-800/80 w-full max-w-md p-8 rounded-2xl ring-1 ring-white/10 shadow-2xl relative">
+        <button class="close-btn absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <h2 class="text-2xl font-bold text-center text-white mb-6">Driver Login</h2>
+        <form action="#" method="POST" class="auth-form" data-dashboard="driver">
+            <div class="space-y-6">
+                <div>
+                    <label for="dl-email" class="block text-sm font-medium text-gray-300">Email address</label>
+                    <input type="email" id="dl-email" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label for="dl-id" class="block text-sm font-medium text-gray-300">ID Number</label>
+                    <input type="text" id="dl-id" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label for="dl-bus-number" class="block text-sm font-medium text-gray-300">Bus Number</label>
+                    <input type="text" id="dl-bus-number" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. UP32-AB-1234">
+                </div>
+                <div>
+                    <label for="dl-password" class="block text-sm font-medium text-gray-300">Password</label>
+                    <input type="password" id="dl-password" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                </div>
+                <div>
+                    <button type="submit" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign in</button>
+                </div>
+            </div>
+        </form>
+        <p class="mt-6 text-center text-sm text-gray-400">Not a driver? <button class="font-medium text-indigo-400 hover:text-indigo-300 switch-to-signup" data-role="driver">Sign up</button></p>
+    </div>
+
+    <!-- Driver Signup -->
+    <div id="driver-signup-page" class="hidden auth-modal bg-gray-800/80 w-full max-w-md p-8 rounded-2xl ring-1 ring-white/10 shadow-2xl relative">
+        <button class="close-btn absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <h2 class="text-2xl font-bold text-center text-white mb-6">Create Driver Account</h2>
+        <form action="#" method="POST" class="auth-form" data-dashboard="driver">
+            <div class="space-y-4">
+                 <div>
+                    <label for="ds-name" class="block text-sm font-medium text-gray-300">Full Name</label>
+                    <input type="text" id="ds-name" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. John Doe">
+                </div>
+                <div>
+                    <label for="ds-id-number" class="block text-sm font-medium text-gray-300">ID Number</label>
+                    <input type="text" id="ds-id-number" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. DRV12345">
+                </div>
+                 <div>
+                    <label for="ds-contact" class="block text-sm font-medium text-gray-300">Phone Number or Email</label>
+                    <input type="text" id="ds-contact" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. 9876543210 or mail@example.com">
+                </div>
+                <div>
+                    <label for="ds-bus-id" class="block text-sm font-medium text-gray-300">Bus ID / Vehicle Number</label>
+                    <input type="text" id="ds-bus-id" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. UP32-AB-1234">
+                </div>
+                 <div>
+                    <label for="ds-route" class="block text-sm font-medium text-gray-300">Assigned Route Number</label>
+                    <input type="text" id="ds-route" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. 101A, 22B">
+                </div>
+                <div>
+                    <label for="ds-password" class="block text-sm font-medium text-gray-300">Password</label>
+                    <input type="password" id="ds-password" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="••••••••">
+                </div>
+                 <div class="relative flex items-center pt-2">
+                    <div class="flex-grow border-t border-gray-600"></div>
+                    <span class="flex-shrink mx-4 text-gray-400 text-sm">OR</span>
+                    <div class="flex-grow border-t border-gray-600"></div>
+                </div>
+                 <div>
+                    <button type="button" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-300 bg-indigo-600/30 hover:bg-indigo-600/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Sign Up with OTP
+                    </button>
+                </div>
+                <div>
+                    <button type="submit" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create Account with Password</button>
+                </div>
+            </div>
+        </form>
+         <p class="mt-6 text-center text-sm text-gray-400">Already a driver? <button class="font-medium text-indigo-400 hover:text-indigo-300 switch-to-login" data-role="driver">Log in</button></p>
+    </div>
+
+</div>
+
+<!-- Passenger Dashboard -->
+<div id="passenger-dashboard-page" class="hidden min-h-screen bg-gray-900 text-white relative isolate overflow-hidden">
+    <div aria-hidden="true" class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+        <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
+    </div>
+    <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <span class="ml-3 text-xl font-bold">Passenger Dashboard</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="logout-btn rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 transition-transform duration-300 hover:scale-105">Logout</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="p-4 sm:p-6 lg:p-8">
+        <h1 class="text-3xl font-bold mb-6">Welcome, Passenger!</h1>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column / Main Content -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Map -->
+                <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:bg-gray-800/80">
+                    <h2 class="text-xl font-semibold mb-4">Real-Time Bus Location</h2>
+                    <div class="aspect-video bg-gray-700 rounded-md flex items-center justify-center">
+                         <p class="text-gray-400"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7915.059582438548!2d75.8507950618584!3d30.91628729673678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a837462345a7d%3A0x681102348ec60610!2sLudhiana%2C%20Punjab!5e0!3m2!1sen!2sin!4v1757479708373!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+                    </div>
+                </div>
+                <!-- Favorites -->
+                <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:bg-gray-800/80">
+                    <h2 class="text-xl font-semibold mb-4">Favorite Routes</h2>
+                    <ul class="space-y-3">
+                        <li class="p-3 bg-gray-700/50 rounded-md flex justify-between items-center transition-all duration-300 hover:bg-gray-700/80"><span>Route #101 - Downtown Express</span><button class="text-indigo-400 hover:text-indigo-300 text-sm transition-transform duration-300 hover:scale-105">View</button></li>
+                        <li class="p-3 bg-gray-700/50 rounded-md flex justify-between items-center transition-all duration-300 hover:bg-gray-700/80"><span>Route #22B - University Line</span><button class="text-indigo-400 hover:text-indigo-300 text-sm transition-transform duration-300 hover:scale-105">View</button></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Right Column / Sidebar -->
+            <div class="space-y-8">
+                 <!-- Search -->
+                <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:bg-gray-800/80">
+                    <h2 class="text-xl font-semibold mb-4">Search Route or Stop</h2>
+                    <input type="text" placeholder="e.g., 'Route 101' or 'Main St'" class="w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                </div>
+                <!-- ETA -->
+                <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:bg-gray-800/80">
+                    <h2 class="text-xl font-semibold mb-4">Estimated Arrival Times</h2>
+                    <div>
+                        <h3 class="font-bold">Stop: Central Station</h3>
+                        <p class="text-gray-300 text-sm">Route #101: <span class="text-green-400">5 mins</span></p>
+                        <p class="text-gray-300 text-sm">Route #22B: <span class="text-yellow-400">12 mins</span></p>
+                    </div>
+                </div>
+                <!-- Bus Details -->
+                 <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:bg-gray-800/80">
+                    <h2 class="text-xl font-semibold mb-4">Bus Details</h2>
+                    <p><strong>Bus #:</strong> 602A</p>
+                    <p><strong>Driver:</strong> John D.</p>
+                    <p><strong>Capacity:</strong> 75% Full</p>
+                </div>
+                <!-- Feedback -->
+                 <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:bg-gray-800/80">
+                    <h2 class="text-xl font-semibold mb-4">Rate Your Ride</h2>
+                    <textarea placeholder="Tell us about your experience..." rows="3" class="w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500"></textarea>
+                    <button class="w-full mt-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded transition-transform duration-300 hover:scale-105">Submit Feedback</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div aria-hidden="true" class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+        <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#80ffb5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"></div>
+    </div>
+</div>
+
+<!-- Driver Dashboard -->
+<div id="driver-dashboard-page" class="hidden min-h-screen bg-gray-900 text-white relative isolate overflow-hidden">
+    <div aria-hidden="true" class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+        <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
+    </div>
+    <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <span class="ml-3 text-xl font-bold">Driver Dashboard</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                     <button class="logout-btn rounded-md bg-indigo-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 transition-transform duration-300 hover:scale-105">Logout</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="p-4 sm:p-6 lg:p-8">
+         <h1 class="text-3xl font-bold mb-6">Welcome, Driver!</h1>
+         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column -->
+            <div class="lg:col-span-1 space-y-8">
+                <!-- Tracking Control -->
+                <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:bg-gray-800/80">
+                    <h2 class="text-xl font-semibold mb-4">Live Tracking</h2>
+                     <div class="flex items-center justify-between">
+                        <span>Tracking Status: <span id="tracking-status" class="font-bold text-red-400">Inactive</span></span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="toggle" id="tracking-toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="tracking-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-600 cursor-pointer"></label>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Current Location -->
+                <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:bg-gray-800/80">
+                    <h2 class="text-xl font-semibold mb-4">Current Location</h2>
+                    <p class="text-gray-300">Central Station, Main Street</p>
+                    <p class="text-xs text-gray-500">Last updated: Just now</p>
+                </div>
+                 <!-- SOS Button -->
+                <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/20 hover:bg-gray-800/80">
+                     <h2 class="text-xl font-semibold mb-4">Emergency</h2>
+                     <button class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg text-lg transition-transform duration-300 hover:scale-105">SOS</button>
+                </div>
+            </div>
+            <!-- Middle Column -->
+            <div class="lg:col-span-1 space-y-8">
+                 <!-- Route & Stops -->
+                <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 h-full transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:bg-gray-800/80">
+                    <h2 class="text-xl font-semibold mb-4">Route #101: Downtown Express</h2>
+                    <ul class="space-y-3 list-decimal list-inside text-gray-300">
+                        <li class="font-bold text-white">Central Station (Current)</li>
+                        <li>Market St & 4th Ave</li>
+                        <li>City Hall</li>
+                        <li>North Plaza</li>
+                    </ul>
+                </div>
+            </div>
+             <!-- Right Column -->
+             <div class="lg:col-span-1 space-y-8">
+                <!-- Notifications -->
+                <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:bg-gray-800/80">
+                    <h2 class="text-xl font-semibold mb-4">Notifications</h2>
+                     <div class="p-3 bg-yellow-500/10 rounded-md">
+                        <p class="text-yellow-300 text-sm"><strong>Alert:</strong> Heavy traffic on 5th Ave. Consider alternate route.</p>
+                     </div>
+                </div>
+                <!-- Shift Info -->
+                <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:bg-gray-800/80">
+                     <h2 class="text-xl font-semibold mb-4">Shift Details</h2>
+                     <p><strong>Shift:</strong> 4:00 PM - 12:00 AM</p>
+                     <p><strong>Earnings (Today):</strong> $128.50</p>
+                </div>
+                 <!-- Passenger Count -->
+                <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:bg-gray-800/80">
+                     <h2 class="text-xl font-semibold mb-4">Passenger Count</h2>
+                     <input type="number" placeholder="Enter count" class="w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                </div>
+             </div>
+         </div>
+    </main>
+    <div aria-hidden="true" class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+        <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#80ffb5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"></div>
     </div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Mobile menu functionality
-        const mobileMenu = document.getElementById('mobile-menu');
-        const openMenuButton = document.getElementById('open-menu-btn');
-        const closeMenuButton = document.getElementById('close-menu-btn');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        openMenuButton.addEventListener('click', () => mobileMenu.showModal());
-        closeMenuButton.addEventListener('click', () => mobileMenu.close());
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => mobileMenu.close());
-        });
-
-        // Modal (Login/Signup) functionality
+        // Page containers
+        const languageContainer = document.getElementById('language-container');
         const mainContent = document.getElementById('main-content');
-        const loginPage = document.getElementById('login-page');
-        const signupPage = document.getElementById('signup-page');
-        
-        const loginButtons = document.querySelectorAll('.login-btn');
-        const signupButtons = document.querySelectorAll('.signup-btn');
-        const closeButtons = document.querySelectorAll('.close-btn');
-        const switchToSignup = document.querySelector('.switch-to-signup');
-        const switchToLogin = document.querySelector('.switch-to-login');
-        const homeLinks = document.querySelectorAll('.home-link');
+        const timetablePage = document.getElementById('timetable-page');
+        const busInfoPage = document.getElementById('bus-info-page');
+        const contactPage = document.getElementById('contact-page');
+        const passengerDashboard = document.getElementById('passenger-dashboard-page');
+        const driverDashboard = document.getElementById('driver-dashboard-page');
+        const helpCenterPage = document.getElementById('help-center-page');
+        const faqPage = document.getElementById('faq-page');
+        const apiStatusPage = document.getElementById('api-status-page');
+        const aboutPage = document.getElementById('about-page');
+        const blogPage = document.getElementById('blog-page');
+        const pressPage = document.getElementById('press-page');
+        const termsPage = document.getElementById('terms-page');
+        const privacyPage = document.getElementById('privacy-page');
 
-        const openLogin = () => {
-            loginPage.classList.remove('hidden');
-            signupPage.classList.add('hidden');
-        };
+        const allPages = [mainContent, timetablePage, busInfoPage, contactPage, passengerDashboard, driverDashboard, helpCenterPage, faqPage, apiStatusPage, aboutPage, blogPage, pressPage, termsPage, privacyPage];
 
-        const openSignup = () => {
-            signupPage.classList.remove('hidden');
-            loginPage.classList.add('hidden');
-        };
-
-        const closeAllModals = () => {
-            loginPage.classList.add('hidden');
-            signupPage.classList.add('hidden');
-        };
-
-        loginButtons.forEach(btn => btn.addEventListener('click', openLogin));
-        signupButtons.forEach(btn => btn.addEventListener('click', openSignup));
-        closeButtons.forEach(btn => btn.addEventListener('click', closeAllModals));
-        
-        switchToSignup.addEventListener('click', openSignup);
-        switchToLogin.addEventListener('click', openLogin);
-
-        homeLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                closeAllModals();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Language Selection
+        const langButtons = document.querySelectorAll('.lang-btn');
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                languageContainer.classList.add('hidden');
+                mainContent.classList.remove('hidden');
             });
         });
         
-        // Close modal when clicking on the backdrop
-        loginPage.addEventListener('click', (e) => {
-            if (e.target === loginPage) closeAllModals();
+        // Mobile menu
+        const mobileMenu = document.getElementById('mobile-menu');
+        const openMenuButton = document.getElementById('open-menu-btn');
+        const closeMenuButton = document.getElementById('close-menu-btn');
+        
+        openMenuButton.addEventListener('click', () => mobileMenu.showModal());
+        closeMenuButton.addEventListener('click', () => mobileMenu.close());
+
+        // Universal Page Switcher
+        const showPage = (pageToShow) => {
+            allPages.forEach(page => page.classList.add('hidden'));
+            if(pageToShow) {
+                pageToShow.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        };
+
+        // Timetable Page Navigation
+        const viewTimetableBtns = document.querySelectorAll('.view-timetable-btn');
+        viewTimetableBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(timetablePage);
+                if(mobileMenu.open) mobileMenu.close();
+            });
         });
-        signupPage.addEventListener('click', (e) => {
-            if (e.target === signupPage) closeAllModals();
+        
+        // Bus Info Page Navigation
+        const viewBusInfoBtns = document.querySelectorAll('.view-bus-info-btn');
+        viewBusInfoBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(busInfoPage);
+                if(mobileMenu.open) mobileMenu.close();
+            });
         });
+
+        // Contact Us Page Navigation
+        const viewContactBtns = document.querySelectorAll('.view-contact-btn');
+        viewContactBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(contactPage);
+                if(mobileMenu.open) mobileMenu.close();
+            });
+        });
+
+        // Footer Page Navigation
+        document.querySelectorAll('.footer-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.dataset.page;
+                const pageToShow = document.getElementById(pageId);
+                showPage(pageToShow);
+            });
+        });
+
+        // Auth Modals
+        const authContainer = document.getElementById('auth-container');
+        const authTriggers = document.querySelectorAll('.auth-trigger');
+        const closeButtons = document.querySelectorAll('.close-btn');
+        
+        const roleSelectionPage = document.getElementById('role-selection-page');
+        const passengerLoginPage = document.getElementById('passenger-login-page');
+        const passengerSignupPage = document.getElementById('passenger-signup-page');
+        const driverLoginPage = document.getElementById('driver-login-page');
+        const driverSignupPage = document.getElementById('driver-signup-page');
+        const authForms = document.querySelectorAll('.auth-form');
+
+        const allAuthModals = [roleSelectionPage, passengerLoginPage, passengerSignupPage, driverLoginPage, driverSignupPage];
+
+        const openAuth = () => {
+            authContainer.classList.remove('hidden');
+            showModal(roleSelectionPage, true);
+        };
+        
+        const showModal = (modalToShow, isAuth) => {
+             if(isAuth) {
+                allAuthModals.forEach(modal => modal.classList.add('hidden'));
+             }
+            if (modalToShow) {
+                modalToShow.classList.remove('hidden');
+            }
+        };
+        
+        const closeAuth = () => {
+            authContainer.classList.add('hidden');
+            allAuthModals.forEach(modal => modal.classList.add('hidden'));
+        };
+
+        authTriggers.forEach(btn => btn.addEventListener('click', openAuth));
+        closeButtons.forEach(btn => btn.addEventListener('click', closeAuth));
+        authContainer.addEventListener('click', (e) => {
+            if (e.target === authContainer) closeAuth();
+        });
+
+        document.getElementById('select-passenger').addEventListener('click', () => showModal(passengerLoginPage, true));
+        document.getElementById('select-driver').addEventListener('click', () => showModal(driverLoginPage, true));
+        
+        document.querySelectorAll('.switch-to-signup').forEach(button => {
+            button.addEventListener('click', () => {
+                const role = button.dataset.role;
+                if (role === 'passenger') showModal(passengerSignupPage, true);
+                if (role === 'driver') showModal(driverSignupPage, true);
+            });
+        });
+
+        document.querySelectorAll('.switch-to-login').forEach(button => {
+            button.addEventListener('click', () => {
+                const role = button.dataset.role;
+                if (role === 'passenger') showModal(passengerLoginPage, true);
+                if (role === 'driver') showModal(driverLoginPage, true);
+            });
+        });
+
+        // Dashboard Navigation
+        authForms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const dashboardType = form.dataset.dashboard;
+                closeAuth();
+                if (dashboardType === 'passenger') showPage(passengerDashboard);
+                else if (dashboardType === 'driver') showPage(driverDashboard);
+            });
+        });
+        
+        // Logout and Home Navigation
+        document.querySelectorAll('.logout-btn').forEach(btn => btn.addEventListener('click', () => showPage(mainContent)));
+        
+        document.querySelectorAll('.home-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeAuth();
+                showPage(mainContent);
+            });
+        });
+
+        // Smooth Scroll for Nav Links on Main Page
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                showPage(mainContent);
+                setTimeout(() => {
+                    document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+                }, 50); 
+                if(mobileMenu.open) mobileMenu.close();
+            });
+        });
+        
+        // Driver Dashboard specific logic
+        const trackingToggle = document.getElementById('tracking-toggle');
+        const trackingStatus = document.getElementById('tracking-status');
+        if (trackingToggle) {
+            trackingToggle.addEventListener('change', () => {
+                if (trackingToggle.checked) {
+                    trackingStatus.textContent = 'Active';
+                    trackingStatus.classList.remove('text-red-400');
+                    trackingStatus.classList.add('text-green-400');
+                } else {
+                    trackingStatus.textContent = 'Inactive';
+                    trackingStatus.classList.remove('text-green-400');
+                    trackingStatus.classList.add('text-red-400');
+                }
+            });
+        }
     });
 </script>
 
 </body>
 </html>
-
