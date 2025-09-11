@@ -109,7 +109,7 @@
         <a href="#" class="-m-1.5 p-1.5 home-link">
           <span class="sr-only">YatriMate</span>
           <div class="flex items-center">
-            <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+            <img class="h-9 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
             <span class="ml-2 text-xl font-bold text-white">YatriMate</span>
           </div>
         </a>
@@ -129,7 +129,21 @@
         <button type="button" class="view-contact-btn text-sm font-semibold leading-6 text-white transition-colors duration-300 hover:text-indigo-400">Contact Us</button>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <button type="button" class="auth-trigger text-sm font-semibold leading-6 text-white transition-colors duration-300 hover:text-indigo-400">Log in <span aria-hidden="true">&rarr;</span></button>
+          <div class="relative" id="lang-dropdown-container">
+            <button type="button" id="lang-dropdown-btn" class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-white transition-colors duration-300 hover:text-indigo-400">
+              <span>Language</span>
+               <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+              </svg>
+            </button>
+            <div id="lang-dropdown-menu" class="hidden absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-gray-800 shadow-lg ring-1 ring-white/10 focus:outline-none">
+              <div class="py-1">
+                <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">English</a>
+                <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">हिन्दी</a>
+                <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">ਪੰਜਾਬੀ</a>
+              </div>
+            </div>
+          </div>
       </div>
     </nav>
     <dialog id="mobile-menu" class="m-0 p-0 bg-transparent lg:hidden">
@@ -138,7 +152,7 @@
           <a href="#" class="-m-1.5 p-1.5 home-link">
             <span class="sr-only">YatriMate</span>
              <div class="flex items-center">
-                <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                 <span class="ml-2 text-xl font-bold text-white">YatriMate</span>
               </div>
           </a>
@@ -158,7 +172,19 @@
               <button type="button" class="view-contact-btn -mx-3 block w-full text-left rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Contact Us</button>
             </div>
             <div class="py-6">
-              <button type="button" class="auth-trigger -mx-3 block w-full text-left rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-white/5">Log in</button>
+               <div id="mobile-lang-container">
+                    <button type="button" id="mobile-lang-btn" class="-mx-3 flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white hover:bg-white/5">
+                      Language
+                      <svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                    <div id="mobile-lang-menu" class="mt-2 space-y-2 hidden">
+                      <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-400 hover:bg-white/5">English</a>
+                      <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-400 hover:bg-white/5">हिन्दी</a>
+                      <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-400 hover:bg-white/5">ਪੰਜਾਬੀ</a>
+                    </div>
+                </div>
             </div>
           </div>
         </div>
@@ -175,7 +201,7 @@
       <div class="mx-auto max-w-2xl py-24 sm:py-32 lg:py-40">
         <div class="hidden sm:mb-8 sm:flex sm:justify-center">
           <div class="relative rounded-full p-4 ring-1 ring-white/10">
-              <img class="h-12 w-12" src="../images/bus2.png" alt="Bus Logo">
+              <img class="h-16 w-16" src="../images/bus4.png" alt="Bus Logo">
           </div>
         </div>
         <div class="text-center">
@@ -208,15 +234,12 @@
     </div>
 
     <!-- Timetable Preview Section -->
-    <section id="timetable-preview" class="timetable-section bg-gray-900 py-16 sm:py-24 relative isolate overflow-hidden">
-      <div aria-hidden="true" class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-        <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%+20rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[15deg] bg-gradient-to-tr from-[#80ffb5] to-[#899cfc] opacity-20 sm:w-[72.1875rem]"></div>
-      </div>
+    <section id="timetable-preview" class="timetable-section bg-transparent py-16 sm:py-24">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
           <div class="sm:flex-auto">
             <h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Live Bus Timetable</h2>
-            <p class="mt-2 text-sm text-gray-400">Showing real-time bus schedules and statuses.</p>
+            <p class="mt-2 text-sm text-gray-400">Showing real-time bus schedules and statuses for Ludhiana.</p>
           </div>
         </div>
         <div class="mt-8 flow-root">
@@ -231,33 +254,33 @@
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Status</th>
                 </tr>
               </thead>
-              <tbody class="bg-gray-900">
+              <tbody class="bg-gray-900/80">
                 <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                  <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Downtown Express</td>
-                  <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#602A</td>
-                  <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Central Station (5:15 PM)</td>
-                  <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">North Plaza (5:55 PM)</td>
+                  <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Samrala Chowk - Jagraon Bridge</td>
+                  <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10G 1122</td>
+                  <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Samrala Chowk (5:10 PM)</td>
+                  <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Jagraon Bridge (5:45 PM)</td>
                   <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
                 </tr>
                 <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                  <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">City Circle</td>
-                  <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#417B</td>
-                  <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">West Market (5:20 PM)</td>
-                  <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">East Gate (6:10 PM)</td>
+                  <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Model Town - Clock Tower</td>
+                  <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10H 5544</td>
+                  <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Model Town (5:25 PM)</td>
+                  <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Clock Tower (6:05 PM)</td>
                   <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-400 ring-1 ring-inset ring-yellow-500/20">Slight Delay</span></td>
                 </tr>
                 <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                  <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">University Line</td>
-                  <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#921U</td>
-                  <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Tech Campus (5:30 PM)</td>
-                  <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Library Hub (5:45 PM)</td>
+                  <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">PAU - Railway Station</td>
+                  <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10G 9876</td>
+                  <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">PAU Gate 1 (5:30 PM)</td>
+                  <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Railway Station (5:50 PM)</td>
                   <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
                 </tr>
                  <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                  <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Airport Shuttle</td>
-                  <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#A33-1</td>
-                  <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Grand Hotel (5:35 PM)</td>
-                  <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Terminal 2 (6:25 PM)</td>
+                  <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Dugri - ISBT</td>
+                  <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10F 3456</td>
+                  <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Dugri Phase 2 (5:40 PM)</td>
+                  <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">ISBT Ludhiana (6:30 PM)</td>
                   <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-red-500/10 px-2 py-1 text-xs font-medium text-red-400 ring-1 ring-inset ring-red-500/20">Cancelled</span></td>
                 </tr>
               </tbody>
@@ -278,10 +301,7 @@
     </div>
 
     <!-- Bus Info Preview Section -->
-    <section id="bus-info-preview" class="bg-gray-900 py-16 sm:py-24 relative isolate overflow-hidden">
-        <div aria-hidden="true" class="absolute inset-x-0 -bottom-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-bottom-80">
-            <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-20rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[-45deg] bg-gradient-to-tr from-[#9089fc] to-[#ff80b5] opacity-20 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"></div>
-        </div>
+    <section id="bus-info-preview" class="bg-transparent py-16 sm:py-24">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0">
           <h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Bus Information</h2>
@@ -346,25 +366,22 @@
     </div>
 
     <!-- Stats Section -->
-    <section class="py-16 sm:py-24 relative isolate overflow-hidden">
-       <div aria-hidden="true" class="absolute inset-x-0 -top-20 -z-10 transform-gpu overflow-hidden blur-3xl">
-            <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%+10rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[120deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-10 sm:w-[72.1875rem]"></div>
-        </div>
+    <section class="py-16 sm:py-24">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-px bg-white/5 sm:grid-cols-2 lg:grid-cols-4 rounded-lg overflow-hidden">
-          <div class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
+          <div class="bg-gray-900/80 px-4 py-6 sm:px-6 lg:px-8">
             <p class="text-sm font-medium leading-6 text-gray-400">Buses</p>
             <p class="mt-2 flex items-baseline gap-x-2"><span class="text-4xl font-semibold tracking-tight text-white">12,500+</span></p>
           </div>
-          <div class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
+          <div class="bg-gray-900/80 px-4 py-6 sm:px-6 lg:px-8">
             <p class="text-sm font-medium leading-6 text-gray-400">Daily Trips</p>
             <p class="mt-2 flex items-baseline gap-x-2"><span class="text-4xl font-semibold tracking-tight text-white">45,000+</span></p>
           </div>
-          <div class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
+          <div class="bg-gray-900/80 px-4 py-6 sm:px-6 lg:px-8">
             <p class="text-sm font-medium leading-6 text-gray-400">Daily Passengers</p>
             <p class="mt-2 flex items-baseline gap-x-2"><span class="text-4xl font-semibold tracking-tight text-white">1.5M+</span></p>
           </div>
-          <div class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
+          <div class="bg-gray-900/80 px-4 py-6 sm:px-6 lg:px-8">
             <p class="text-sm font-medium leading-6 text-gray-400">Daily Kilometres</p>
             <p class="mt-2 flex items-baseline gap-x-2"><span class="text-4xl font-semibold tracking-tight text-white">4.2M+</span></p>
           </div>
@@ -378,11 +395,8 @@
     </div>
 
     <!-- CTA and Footer Section -->
-    <section id="cta" class="relative isolate overflow-hidden">
-      <div aria-hidden="true" class="absolute inset-x-0 bottom-0 -z-10 transform-gpu overflow-hidden blur-3xl">
-            <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-15rem)] aspect-[1155/678] w-[36.125rem] translate-y-1/2 rotate-[-90deg] bg-gradient-to-tr from-[#80ffb5] to-[#ff80b5] opacity-20 sm:w-[72.1875rem]"></div>
-      </div>
-      <div class="bg-gray-900">
+    <section id="cta">
+      <div class="bg-transparent">
         <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
           <div class="mx-auto max-w-2xl text-center">
             <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Boost your commute.<br>Start using YatriMate today.</h2>
@@ -394,13 +408,13 @@
         </div>
       </div>
 
-      <footer class="bg-gray-900 border-t border-white/10" aria-labelledby="footer-heading">
+      <footer class="bg-transparent border-t border-white/10" aria-labelledby="footer-heading">
         <h2 id="footer-heading" class="sr-only">Footer</h2>
         <div class="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8">
           <div class="xl:grid xl:grid-cols-2 xl:gap-8">
-            <div class="space-y-8">
-                <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
-                <span class="ml-2 text-xl font-bold text-white">YatriMate</span>   
+             <div class="flex items-center space-x-3">
+                <img class="h-12 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
+                <span class="text-xl font-bold text-white">YatriMate</span>
             </div>
             <div class="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4 xl:mt-0">
               <div>
@@ -456,7 +470,7 @@
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                     <span class="ml-3 text-xl font-bold">Live Timetable</span>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -466,13 +480,10 @@
         </nav>
     </header>
     <main class="timetable-section py-16 sm:py-24 relative isolate overflow-hidden">
-        <div aria-hidden="true" class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-            <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%+20rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[15deg] bg-gradient-to-tr from-[#80ffb5] to-[#899cfc] opacity-20 sm:w-[72.1875rem]"></div>
-        </div>
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Full Bus Schedule</h1>
+                    <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Full Bus Schedule (Ludhiana)</h1>
                     <p class="mt-2 text-sm text-gray-400">All available real-time bus schedules and statuses.</p>
                 </div>
             </div>
@@ -489,47 +500,144 @@
                             </tr>
                         </thead>
                         <tbody class="bg-gray-900">
-                            <!-- More Bus Data -->
-                             <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Downtown Express</td>
-                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#602A</td>
-                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Central Station (5:15 PM)</td>
-                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">North Plaza (5:55 PM)</td>
+                           <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Samrala Chowk - Jagraon Bridge</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10G 1122</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Samrala Chowk (5:10 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Jagraon Bridge (5:45 PM)</td>
                                 <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
                             </tr>
                             <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">City Circle</td>
-                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#417B</td>
-                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">West Market (5:20 PM)</td>
-                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">East Gate (6:10 PM)</td>
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Model Town - Clock Tower</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10H 5544</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Model Town (5:25 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Clock Tower (6:05 PM)</td>
                                 <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-400 ring-1 ring-inset ring-yellow-500/20">Slight Delay</span></td>
                             </tr>
                             <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">University Line</td>
-                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#921U</td>
-                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Tech Campus (5:30 PM)</td>
-                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Library Hub (5:45 PM)</td>
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">PAU - Railway Station</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10G 9876</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">PAU Gate 1 (5:30 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Railway Station (5:50 PM)</td>
                                 <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
                             </tr>
                             <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Airport Shuttle</td>
-                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#A33-1</td>
-                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Grand Hotel (5:35 PM)</td>
-                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Terminal 2 (6:25 PM)</td>
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Dugri - ISBT</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10F 3456</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Dugri Phase 2 (5:40 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">ISBT Ludhiana (6:30 PM)</td>
                                 <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-red-500/10 px-2 py-1 text-xs font-medium text-red-400 ring-1 ring-inset ring-red-500/20">Cancelled</span></td>
                             </tr>
-                             <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Suburb Connect</td>
-                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#S-12</td>
-                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Oakwood Mall (5:40 PM)</td>
-                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">City Center (6:30 PM)</td>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Feroze Gandhi Market - Haibowal</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10E 4591</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">F.G. Market (5:45 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Haibowal Kalan (6:25 PM)</td>
                                 <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
                             </tr>
                              <tr class="transition-colors duration-300 hover:bg-gray-800/50">
-                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Industrial Park</td>
-                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">#IP-4</td>
-                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Factory Gate (5:55 PM)</td>
-                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Metro Station (6:20 PM)</td>
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Chaura Bazar - Sarabha Nagar</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10G 8878</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Chaura Bazar (5:50 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Sarabha Nagar (6:20 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                             <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Gill Road - MBD Mall</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10H 1212</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Gill Road (6:00 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">MBD Mall (6:40 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-400 ring-1 ring-inset ring-yellow-500/20">Slight Delay</span></td>
+                            </tr>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Focal Point - BRS Nagar</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10F 7890</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Focal Point Phase 5 (6:05 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">BRS Nagar (6:55 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">CMC Hospital - Sahnewal Airport</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10E 2323</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">CMC Hospital (6:10 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Sahnewal Airport (7:00 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Dhandari Kalan - Ghumar Mandi</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10G 6754</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Dhandari Kalan (6:15 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Ghumar Mandi (6:50 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                             <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Kundanpuri - Miller Ganj</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10H 1188</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Kundanpuri (6:20 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Miller Ganj (6:45 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Cheema Chowk - Urban Estate</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10F 9900</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Cheema Chowk (6:30 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Urban Estate Phase 1 (7:10 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-400 ring-1 ring-inset ring-yellow-500/20">Slight Delay</span></td>
+                            </tr>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Kochar Market - Fortis Hospital</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10G 5432</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Kochar Market (6:40 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Fortis Hospital (7:15 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Shivpuri - Pavilion Mall</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10H 8765</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Shivpuri (6:45 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Pavilion Mall (7:05 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Bus Stand - Aarti Chowk</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10F 4321</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">ISBT Ludhiana (6:50 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Aarti Chowk (7:10 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                             <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Jalandhar Bypass - Sherpur</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10G 1111</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Jalandhar Bypass (7:00 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Sherpur Chowk (7:45 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                             <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Clock Tower - Model Town</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10H 2222</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Clock Tower (7:05 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Model Town Ext (7:40 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Railway Station - Dugri</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10F 3333</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Railway Station (7:10 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Dugri Phase 1 (8:00 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-400 ring-1 ring-inset ring-yellow-500/20">Slight Delay</span></td>
+                            </tr>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">ISBT - PAU</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10G 4444</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">ISBT Ludhiana (7:15 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">PAU Gate 4 (7:55 PM)</td>
+                                <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
+                            </tr>
+                            <tr class="transition-colors duration-300 hover:bg-gray-800/50">
+                                <td data-label="Route" class="py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Haibowal - Samrala Chowk</td>
+                                <td data-label="Bus Number" class="px-3 py-4 text-sm text-gray-300">PB10H 5555</td>
+                                <td data-label="Departure" class="px-3 py-4 text-sm text-gray-300">Haibowal Kalan (7:20 PM)</td>
+                                <td data-label="Arrival (Est.)" class="px-3 py-4 text-sm text-gray-300">Samrala Chowk (8:10 PM)</td>
                                 <td data-label="Status" class="px-3 py-4 text-sm text-gray-300"><span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">On Time</span></td>
                             </tr>
                         </tbody>
@@ -546,7 +654,7 @@
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                     <span class="ml-3 text-xl font-bold">Bus Information</span>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -556,9 +664,6 @@
         </nav>
     </header>
     <main class="py-16 sm:py-24 relative isolate overflow-hidden">
-        <div aria-hidden="true" class="absolute inset-x-0 -bottom-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-bottom-80">
-            <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-20rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[-45deg] bg-gradient-to-tr from-[#9089fc] to-[#ff80b5] opacity-20 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"></div>
-        </div>
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0">
                 <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Our Fleet</h1>
@@ -619,7 +724,7 @@
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                     <span class="ml-3 text-xl font-bold">Contact Us</span>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -629,9 +734,6 @@
         </nav>
     </header>
     <main class="py-16 sm:py-24 relative isolate overflow-hidden">
-        <div aria-hidden="true" class="absolute inset-x-0 -bottom-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-bottom-80">
-            <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-20rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[-45deg] bg-gradient-to-tr from-[#9089fc] to-[#ff80b5] opacity-20 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"></div>
-        </div>
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl text-center">
                 <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Get in Touch</h1>
@@ -672,7 +774,7 @@
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                     <span class="ml-3 text-xl font-bold">Help Center</span>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -711,7 +813,7 @@
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                     <span class="ml-3 text-xl font-bold">FAQs</span>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -745,7 +847,7 @@
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                     <span class="ml-3 text-xl font-bold">API Status</span>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -784,7 +886,7 @@
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                     <span class="ml-3 text-xl font-bold">About Us</span>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -805,7 +907,7 @@
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                     <span class="ml-3 text-xl font-bold">Blog</span>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -826,7 +928,7 @@
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                     <span class="ml-3 text-xl font-bold">Press</span>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -847,7 +949,7 @@
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                     <span class="ml-3 text-xl font-bold">Terms of Service</span>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -868,7 +970,7 @@
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                     <span class="ml-3 text-xl font-bold">Privacy Policy</span>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -936,33 +1038,19 @@
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <h2 class="text-2xl font-bold text-center text-white mb-6">Create Passenger Account</h2>
-        <form action="#" method="POST" class="auth-form" data-dashboard="passenger">
-            <div class="space-y-6">
-                <div>
-                    <label for="ps-name" class="block text-sm font-medium text-gray-300">Full Name</label>
-                    <input type="text" id="ps-name" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. John Doe">
-                </div>
-                <div>
-                    <label for="ps-contact" class="block text-sm font-medium text-gray-300">Phone Number or Email</label>
-                    <input type="text" id="ps-contact" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. 9876543210 or mail@example.com">
-                </div>
-                <div>
-                    <label for="ps-password" class="block text-sm font-medium text-gray-300">Password</label>
-                    <input type="password" id="ps-password" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="••••••••">
-                </div>
-                 <div class="relative flex items-center">
-                    <div class="flex-grow border-t border-gray-600"></div>
-                    <span class="flex-shrink mx-4 text-gray-400 text-sm">OR</span>
-                    <div class="flex-grow border-t border-gray-600"></div>
-                </div>
-                 <div class="space-y-2">
-                    <button type="button" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-300 bg-indigo-600/30 hover:bg-indigo-600/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Sign Up with OTP
-                    </button>
-                </div>
-                <div>
-                    <button type="submit" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create Account with Password</button>
-                </div>
+        <form id="passenger-signup-form" class="space-y-6">
+            <div>
+                <label for="ps-name" class="block text-sm font-medium text-gray-300">Full Name</label>
+                <input type="text" id="ps-name" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. John Doe">
+            </div>
+            <div>
+                <label for="ps-contact" class="block text-sm font-medium text-gray-300">Phone Number or Email</label>
+                <input type="text" id="ps-contact" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. 9876543210 or mail@example.com">
+            </div>
+             <div>
+                <button type="button" class="signup-otp-btn w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Sign Up with OTP
+                </button>
             </div>
         </form>
          <p class="mt-6 text-center text-sm text-gray-400">Already a member? <button class="font-medium text-indigo-400 hover:text-indigo-300 switch-to-login" data-role="passenger">Log in</button></p>
@@ -1006,62 +1094,65 @@
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <h2 class="text-2xl font-bold text-center text-white mb-6">Create Driver Account</h2>
-        <form action="#" method="POST" class="auth-form" data-dashboard="driver">
-            <div class="space-y-4">
-                 <div>
-                    <label for="ds-name" class="block text-sm font-medium text-gray-300">Full Name</label>
-                    <input type="text" id="ds-name" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. John Doe">
-                </div>
-                <div>
-                    <label for="ds-id-number" class="block text-sm font-medium text-gray-300">ID Number</label>
-                    <input type="text" id="ds-id-number" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. DRV12345">
-                </div>
-                 <div>
-                    <label for="ds-contact" class="block text-sm font-medium text-gray-300">Phone Number or Email</label>
-                    <input type="text" id="ds-contact" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. 9876543210 or mail@example.com">
-                </div>
-                <div>
-                    <label for="ds-bus-id" class="block text-sm font-medium text-gray-300">Bus ID / Vehicle Number</label>
-                    <input type="text" id="ds-bus-id" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. UP32-AB-1234">
-                </div>
-                 <div>
-                    <label for="ds-route" class="block text-sm font-medium text-gray-300">Assigned Route Number</label>
-                    <input type="text" id="ds-route" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. 101A, 22B">
-                </div>
-                <div>
-                    <label for="ds-password" class="block text-sm font-medium text-gray-300">Password</label>
-                    <input type="password" id="ds-password" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="••••••••">
-                </div>
-                 <div class="relative flex items-center pt-2">
-                    <div class="flex-grow border-t border-gray-600"></div>
-                    <span class="flex-shrink mx-4 text-gray-400 text-sm">OR</span>
-                    <div class="flex-grow border-t border-gray-600"></div>
-                </div>
-                 <div>
-                    <button type="button" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-300 bg-indigo-600/30 hover:bg-indigo-600/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Sign Up with OTP
-                    </button>
-                </div>
-                <div>
-                    <button type="submit" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create Account with Password</button>
-                </div>
+        <form id="driver-signup-form" class="space-y-4">
+             <div>
+                <label for="ds-name" class="block text-sm font-medium text-gray-300">Full Name</label>
+                <input type="text" id="ds-name" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. John Doe">
+            </div>
+            <div>
+                <label for="ds-id-number" class="block text-sm font-medium text-gray-300">ID Number</label>
+                <input type="text" id="ds-id-number" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. DRV12345">
+            </div>
+             <div>
+                <label for="ds-contact" class="block text-sm font-medium text-gray-300">Phone Number or Email</label>
+                <input type="text" id="ds-contact" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. 9876543210 or mail@example.com">
+            </div>
+            <div>
+                <label for="ds-bus-id" class="block text-sm font-medium text-gray-300">Bus ID / Vehicle Number</label>
+                <input type="text" id="ds-bus-id" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. UP32-AB-1234">
+            </div>
+             <div>
+                <label for="ds-route" class="block text-sm font-medium text-gray-300">Assigned Route Number</label>
+                <input type="text" id="ds-route" required class="mt-1 block w-full bg-white/5 rounded-md border-0 py-2.5 px-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500" placeholder="e.g. 101A, 22B">
+            </div>
+             <div>
+                <button type="button" class="signup-otp-btn w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Sign Up with OTP
+                </button>
             </div>
         </form>
          <p class="mt-6 text-center text-sm text-gray-400">Already a driver? <button class="font-medium text-indigo-400 hover:text-indigo-300 switch-to-login" data-role="driver">Log in</button></p>
+    </div>
+    
+    <!-- OTP Verification Modal -->
+    <div id="otp-verification-page" class="hidden auth-modal bg-gray-800/80 w-full max-w-md p-8 rounded-2xl ring-1 ring-white/10 shadow-2xl relative">
+        <button class="close-btn absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <h2 class="text-2xl font-bold text-center text-white mb-2">Verify Your Account</h2>
+        <p class="text-center text-gray-400 mb-6 text-sm">Enter the 6-digit code sent to your device.</p>
+        <form id="otp-form" data-dashboard="">
+            <div class="flex justify-center gap-2 mb-6">
+                <input type="text" maxlength="1" class="w-12 h-12 text-center text-2xl font-bold bg-white/5 rounded-md border-0 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <input type="text" maxlength="1" class="w-12 h-12 text-center text-2xl font-bold bg-white/5 rounded-md border-0 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <input type="text" maxlength="1" class="w-12 h-12 text-center text-2xl font-bold bg-white/5 rounded-md border-0 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <input type="text" maxlength="1" class="w-12 h-12 text-center text-2xl font-bold bg-white/5 rounded-md border-0 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <input type="text" maxlength="1" class="w-12 h-12 text-center text-2xl font-bold bg-white/5 rounded-md border-0 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <input type="text" maxlength="1" class="w-12 h-12 text-center text-2xl font-bold bg-white/5 rounded-md border-0 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            </div>
+            <button type="submit" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Verify</button>
+        </form>
     </div>
 
 </div>
 
 <!-- Passenger Dashboard -->
 <div id="passenger-dashboard-page" class="hidden min-h-screen bg-gray-900 text-white relative isolate overflow-hidden">
-    <div aria-hidden="true" class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-        <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
-    </div>
     <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                     <span class="ml-3 text-xl font-bold">Passenger Dashboard</span>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -1079,7 +1170,7 @@
                 <div class="bg-gray-800/50 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20 hover:bg-gray-800/80">
                     <h2 class="text-xl font-semibold mb-4">Real-Time Bus Location</h2>
                     <div class="aspect-video bg-gray-700 rounded-md flex items-center justify-center">
-                         <p class="text-gray-400"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7915.059582438548!2d75.8507950618584!3d30.91628729673678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a837462345a7d%3A0x681102348ec60610!2sLudhiana%2C%20Punjab!5e0!3m2!1sen!2sin!4v1757479708373!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+                         <p class="text-gray-400">Map Placeholder</p>
                     </div>
                 </div>
                 <!-- Favorites -->
@@ -1123,21 +1214,15 @@
             </div>
         </div>
     </main>
-    <div aria-hidden="true" class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
-        <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#80ffb5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"></div>
-    </div>
 </div>
 
 <!-- Driver Dashboard -->
 <div id="driver-dashboard-page" class="hidden min-h-screen bg-gray-900 text-white relative isolate overflow-hidden">
-    <div aria-hidden="true" class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-        <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
-    </div>
     <header class="bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-40">
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="../images/bus2.png" alt="YatriMate Logo">
+                    <img class="h-8 w-auto" src="../images/bus4.png" alt="YatriMate Logo">
                     <span class="ml-3 text-xl font-bold">Driver Dashboard</span>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -1210,9 +1295,6 @@
              </div>
          </div>
     </main>
-    <div aria-hidden="true" class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
-        <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#80ffb5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"></div>
-    </div>
 </div>
 
 <script>
@@ -1262,35 +1344,23 @@
             }
         };
 
-        // Timetable Page Navigation
-        const viewTimetableBtns = document.querySelectorAll('.view-timetable-btn');
-        viewTimetableBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                showPage(timetablePage);
-                if(mobileMenu.open) mobileMenu.close();
+        // Page Navigation
+        const setupPageLink = (btnClass, page) => {
+            document.querySelectorAll(btnClass).forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showPage(page);
+                    if(mobileMenu.open) mobileMenu.close();
+                });
             });
-        });
-        
-        // Bus Info Page Navigation
-        const viewBusInfoBtns = document.querySelectorAll('.view-bus-info-btn');
-        viewBusInfoBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                showPage(busInfoPage);
-                if(mobileMenu.open) mobileMenu.close();
-            });
-        });
-
-        // Contact Us Page Navigation
-        const viewContactBtns = document.querySelectorAll('.view-contact-btn');
-        viewContactBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                showPage(contactPage);
-                if(mobileMenu.open) mobileMenu.close();
-            });
-        });
+        };
+        setupPageLink('.view-timetable-btn', timetablePage);
+        setupPageLink('.view-bus-info-btn', busInfoPage);
+        setupPageLink('.view-contact-btn', contactPage);
+        document.querySelectorAll('.home-link').forEach(link => link.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage(mainContent);
+        }));
 
         // Footer Page Navigation
         document.querySelectorAll('.footer-link').forEach(link => {
@@ -1312,9 +1382,10 @@
         const passengerSignupPage = document.getElementById('passenger-signup-page');
         const driverLoginPage = document.getElementById('driver-login-page');
         const driverSignupPage = document.getElementById('driver-signup-page');
+        const otpPage = document.getElementById('otp-verification-page');
         const authForms = document.querySelectorAll('.auth-form');
 
-        const allAuthModals = [roleSelectionPage, passengerLoginPage, passengerSignupPage, driverLoginPage, driverSignupPage];
+        const allAuthModals = [roleSelectionPage, passengerLoginPage, passengerSignupPage, driverLoginPage, driverSignupPage, otpPage];
 
         const openAuth = () => {
             authContainer.classList.remove('hidden');
@@ -1359,9 +1430,18 @@
                 if (role === 'driver') showModal(driverLoginPage, true);
             });
         });
+        
+        // OTP flow
+        document.querySelectorAll('.signup-otp-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const form = btn.closest('form');
+                document.getElementById('otp-form').dataset.dashboard = form.id.includes('passenger') ? 'passenger' : 'driver';
+                showModal(otpPage, true);
+            });
+        });
 
         // Dashboard Navigation
-        authForms.forEach(form => {
+        document.querySelectorAll('.auth-form, #otp-form').forEach(form => {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const dashboardType = form.dataset.dashboard;
@@ -1374,14 +1454,7 @@
         // Logout and Home Navigation
         document.querySelectorAll('.logout-btn').forEach(btn => btn.addEventListener('click', () => showPage(mainContent)));
         
-        document.querySelectorAll('.home-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                closeAuth();
-                showPage(mainContent);
-            });
-        });
-
+        
         // Smooth Scroll for Nav Links on Main Page
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', (e) => {
@@ -1411,6 +1484,30 @@
                 }
             });
         }
+
+        // Language Dropdown
+        const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+        const langDropdownMenu = document.getElementById('lang-dropdown-menu');
+        const langDropdownContainer = document.getElementById('lang-dropdown-container');
+
+        langDropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langDropdownMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!langDropdownContainer.contains(e.target)) {
+                langDropdownMenu.classList.add('hidden');
+            }
+        });
+
+        // Mobile Language Dropdown
+        const mobileLangBtn = document.getElementById('mobile-lang-btn');
+        const mobileLangMenu = document.getElementById('mobile-lang-menu');
+        
+        mobileLangBtn.addEventListener('click', () => {
+            mobileLangMenu.classList.toggle('hidden');
+        });
     });
 </script>
 

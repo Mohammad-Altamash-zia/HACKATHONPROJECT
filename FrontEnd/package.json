@@ -1,4 +1,12 @@
 {
+  "name": "yatrimate-frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "css:build": "tailwindcss -i src/input.css -o src/output.css",
+    "css:watch": "tailwindcss -i src/input.css -o src/output.css --watch",
+    "serve": "cd src && npx serve .",
+    "dev": "npm run css:watch"
+  },
   "devDependencies": {
     "tailwindcss": "^3.4.17"
   }
